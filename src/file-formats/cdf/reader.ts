@@ -24,7 +24,14 @@ export function parseCdf(data: string) {
   const jObj = parser.parse(data).CharacterDefinition
 
   if (Array.isArray(jObj.AttachmentList.Attachment)) {
-    const attachments = jObj.AttachmentList.Attachment.find((attachment) => attachment.Type === 'CA_SKIN')
+    let attachments = jObj.AttachmentList.Attachment.find((attachment) => attachment.Type === 'CA_CLOTH' && attachment.Binding)
+    || jObj.AttachmentList.Attachment.find((attachment) => attachment.Type === 'CA_SKIN')
+
+    if(attachments.Binding.includes('.cloth')) {
+      attachments.Binding = attachments.Binding.replace('.cloth', '.skin')
+      attachments.Binding = attachments.Binding.replaceAll('var1', '')
+    }
+
     return {
       model: attachments.Binding,
       material: attachments.Material,

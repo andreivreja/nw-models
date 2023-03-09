@@ -6,6 +6,7 @@ import { BinaryReader } from './binary-reader'
 import { ChunkHeader, ChunkType, FileHeader, FileType, FileVersion } from './types'
 
 export async function getMaterialNameForSkin(skinFile: string) {
+  return 'mtx_Firelight2023_lantesrns_mat';
   if (!fs.existsSync(skinFile)) {
     logger.warn('missing', skinFile)
     return

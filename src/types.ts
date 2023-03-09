@@ -5,6 +5,7 @@ export interface TransformContext {
 }
 
 export interface ModelAsset {
+  id?: string,
   refId: string
   items: ItemDefinitionMaster[]
   appearance?: Appearance
@@ -106,6 +107,11 @@ export interface ItemDefinitionMaster {
   WeaponAccessory?: string
   WeaponAppearanceOverride?: string
   Weight?: number
+}
+
+export interface HousingItemDefinitionMaster {
+  HouseItemID: string
+  PrefabPath: string
 }
 
 export interface WeaponAppearanceDefinition {

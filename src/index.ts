@@ -8,6 +8,7 @@ import {
   collectMaterials,
   collectModels,
   collectTextures,
+  filterItemsByItemId,
   filterAssetsByItemId,
   filterAssetsBySkinName,
   readTables,
@@ -82,11 +83,13 @@ program
     const textureSize: number = Number(opts.textureSize) || null
 
     logger.info('Resolving available assets')
-    const tables = await readTables({ tablesDir: input })
+    const tables = await readTables({ tablesDir: path.join(input, 'sharedassets/springboardentitites/datatables') })
     const assets = await collectAssets({
-      items: tables.items,
-      itemAppearances: tables.appearances,
-      weaponAppearances: tables.weapons,
+      items: [], // filterItemsByItemId(id, tables.items),
+      housingItems: tables.housingItems,
+      itemAppearances: [], // tables.appearances,
+      weaponAppearances: [], // tables.weapons,
+      instrumentAppearances: [], // tables.instruments,
       sourceRoot: input,
     }).then((list) => {
       list = filterAssetsByItemId(id, list)

@@ -164,7 +164,7 @@
           columnDefs: columnDefs,
           rowData: [],
           onGridReady: ({ api }) => {
-            fetch('out/models/stats.json')
+            fetch('out/new/models/stats.json')
               .then((data) => data.json())
               .then((data) => {
                 api.setRowData(data)
